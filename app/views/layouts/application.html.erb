@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quiz2</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+  <nav>
+    <div>left
+      <div>
+        <a href="/">home</a>
+      </div>
+    </div>
+    <div>
+      <div>
+        Hello, <a href="#">Sign in</a>
+      </div>
+      <div>
+        <%= link_to 'new idea', new_idea_path %>
+      </div>
+    </div>
+  </nav>
+  <hr>
+    <%= yield %>
+  </body>
+</html>

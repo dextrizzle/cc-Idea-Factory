@@ -1,0 +1,22 @@
+<h1>Ideas#index</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th>Members</th>
+    <th>Likes</th>
+  </tr>
+
+  <% @idea.each do |idea| %>
+      <tr>
+        <td><%= idea.title %></td>
+        <td><%= idea.text %></td>
+        <td><%= idea.members %></td>
+        <td><%= idea.likes %></td>
+        <td><%= link_to 'Show', idea_path(idea) %></td>
+        <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
+        <td><%= link_to 'Destroy', idea_path(idea), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+</table>
