@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
-  http_basic_authenticate_with name:'jeff', password:'secret',
-                               only: :destroy
+
+  before_action :authenticate_user!
+
   def create
     @idea = Idea.find(params[:idea_id])
     @review = @idea.reviews.create(review_params)
