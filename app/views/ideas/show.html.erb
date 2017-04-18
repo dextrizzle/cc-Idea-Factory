@@ -1,25 +1,30 @@
-<% if current_user %>
-  <% @user = User.find(@idea.user_id) %>
 
-  <h4><%= @user.email %></h4>
-<% end %>
-
+<div class="well">
 <h1><%= @idea.title %></h1>
-<h3><%= @idea.text %></h3>
+
+<% if current_user %>
+    <% @user = User.find(@idea.user_id) %>
+
+    <h5>by: <%= @user.email %></h5>
+<% end %>
+  <br>
+<p><%= @idea.text %></p>
 
 <br>
 <% if current_user%>
     <% if @user == current_user %>
-        <%= link_to 'Edit', edit_idea_path(@idea) %>
+        <%= link_to 'Edit', edit_idea_path(@idea) %> |
         <%= link_to 'Destroy', idea_path(@idea), method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
 <% end %>
-
+</div>
 
 <hr>
 <h2>Reviews</h2>
 <hr>
+
 <% @idea.reviews.each do |review| %>
+  <div class="well">
     <p>
       <strong>Reviewer:</strong>
       <%= User.find(review.user_id).email %>
@@ -36,8 +41,9 @@
                     data: {confirm: 'Are you sure?'} %>
       </p>
     <% end %>
-    <hr>
+  </div>
 <% end %>
+<hr>
 
 <% if current_user %>
   <h2>Add a review:</h2>

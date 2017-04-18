@@ -1,20 +1,28 @@
-<h1>Ideas#index</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th>Members</th>
-    <th>Likes</th>
-  </tr>
+  <h1>Ideas</h1>
 
-  <% @idea.each do |idea| %>
-      <tr>
-        <td><%= idea.title %></td>
-        <td><%= idea.text %></td>
-        <td><%= idea.members %></td>
-        <td><%= idea.likes %></td>
-        <td><%= link_to 'Show', idea_path(idea) %></td>
-      </tr>
-  <% end %>
-</table>
+
+    <% @idea.each do |idea| %>
+        <div class = 'well'>
+          <div class="idea-title">
+            <h4 style="margin-top:0"><%= idea.title %></h4>
+            <div class="idea-body"><p><%= idea.text %></p></div>
+          </div>
+          <a href="#"><%=User.find(idea.user_id).email%></a>
+
+          <div class="btn btn-xs btn-default">
+            <%= link_to 'Show', idea_path(idea), :class => "btn-xs" %>
+          </div>
+          <div class="btn btn-xs btn-default">
+            <%= link_to 'Like', :class => "btn-xs" %>
+          </div>
+
+          <div class="pull-right">
+            <span>Members: <%= idea.members %></span>
+            <span>Likes: <%= idea.likes %></span>
+          </div>
+
+
+        </div>
+    <% end %>
+  </table>
