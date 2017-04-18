@@ -16,6 +16,8 @@ class IdeasController < ApplicationController
 
   def create
     @idea = Idea.new(idea_params)
+    @idea.user = current_user
+
     if @idea.save
       redirect_to @idea
     else
@@ -35,6 +37,7 @@ class IdeasController < ApplicationController
 
   def show
     @idea = Idea.find(params[:id])
+    # @user = User.find(@idea.user_id)
   end
 
   def destroy

@@ -1,5 +1,15 @@
+<% if current_user %>
+  <% @user = User.find(@idea.user_id) %>
+  <% if @user == current_user %>
+      hoyl shet logged the fuck in
+  <% end %>
+  <h4><%= @user.email %></h4>
+<% end %>
+
 <h1><%= @idea.title %></h1>
 <h3><%= @idea.text %></h3>
+
+
 
 
 <hr>
