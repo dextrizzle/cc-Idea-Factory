@@ -22,19 +22,21 @@
 <% @idea.reviews.each do |review| %>
     <p>
       <strong>Reviewer:</strong>
-      <%= review.reviewer %>
+      <%= review.user_id %>
     </p>
 
     <p>
       <strong>Review:</strong>
       <%= review.body %>
     </p>
-    <% if current_user && @user == current_user%>
-      <p>
-        <%= link_to 'Destroy Review', [review.idea, review],
-                    method: :delete,
-                    data: {confirm: 'Are you sure?'} %>
-      </p>
+    <% if current_user %>
+        <%if review.user_id == current_user.id%>
+          <p>
+            <%= link_to 'Destroy Review', [review.idea, review],
+                        method: :delete,
+                        data: {confirm: 'Are you sure?'} %>
+          </p>
+        <% end %>
     <% end %>
     <hr>
 <% end %>
