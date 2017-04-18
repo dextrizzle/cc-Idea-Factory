@@ -1,15 +1,19 @@
 <% if current_user %>
   <% @user = User.find(@idea.user_id) %>
-  <% if @user == current_user %>
-      hoyl shet logged the fuck in
-  <% end %>
+
   <h4><%= @user.email %></h4>
 <% end %>
 
 <h1><%= @idea.title %></h1>
 <h3><%= @idea.text %></h3>
 
-
+<br>
+<% if current_user%>
+    <% if @user == current_user %>
+        <%= link_to 'Edit', edit_idea_path(@idea) %>
+        <%= link_to 'Destroy', idea_path(@idea), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+<% end %>
 
 
 <hr>
@@ -25,29 +29,27 @@
       <strong>Review:</strong>
       <%= review.body %>
     </p>
-
-    <p>
-      <%= link_to 'Destroy Review', [review.idea, review],
-                  method: :delete,
-                  data: {confirm: 'Are you sure?'} %>
-    </p>
+    <% if current_user && @user == current_user%>
+      <p>
+        <%= link_to 'Destroy Review', [review.idea, review],
+                    method: :delete,
+                    data: {confirm: 'Are you sure?'} %>
+      </p>
+    <% end %>
     <hr>
 <% end %>
 
-<h2>Add a review:</h2>
-<%= form_for([@idea, @idea.reviews.build]) do |f| %>
-    <p>
-      <%= f.label :reviewer %><br>
-      <%= f.text_field :reviewer %>
-    </p>
-    <p>
-      <%= f.label :body %><br>
-      <%= f.text_area :body %>
-    </p>
-    <p>
-      <%= f.submit %>
-    </p>
+<% if current_user %>
+  <h2>Add a review:</h2>
+  <%= form_for([@idea, @idea.reviews.build]) do |f| %>
+      <p>
+        <%= f.label :body %><br>
+        <%= f.text_area :body %>
+      </p>
+      <p>
+        <%= f.submit %>
+      </p>
+  <% end %>
 <% end %>
 
-<%= link_to 'Edit', edit_idea_path(@idea) %>
 <%= link_to 'Back', ideas_path %>

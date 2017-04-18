@@ -5,6 +5,8 @@ class ReviewsController < ApplicationController
   def create
     @idea = Idea.find(params[:idea_id])
     @review = @idea.reviews.create(review_params)
+    @review.user = current_user
+    @review.save
     redirect_to idea_path(@idea)
   end
 
@@ -12,7 +14,10 @@ class ReviewsController < ApplicationController
     @idea = Idea.find(params[:idea_id])
     @review = @idea.reviews.find(params[:id])
     @review.destroy
-    redirect_to idea_path(@idea)
+    if @review.save
+      redirect_to idea_path(@idea)
+    end
+
   end
   private
 
