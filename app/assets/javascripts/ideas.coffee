@@ -5,3 +5,5 @@ $ ->
   $('.idea-body').hide()
   $('.idea-title').click ->
     $(this).find('.idea-body').slideToggle()
+
+$(".a-unique-class").html('<%= j render "ideas/_form/" %>')
