@@ -1,6 +1,8 @@
 class Idea < ApplicationRecord
+  acts_as_votable
   has_many :reviews, dependent: :destroy
   belongs_to :user
+
   after_initialize :init
 
   validates(:title, { presence: true, uniqueness: true })

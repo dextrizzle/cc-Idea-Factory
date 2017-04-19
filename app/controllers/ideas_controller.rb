@@ -46,6 +46,17 @@ class IdeasController < ApplicationController
     redirect_to ideas_path
   end
 
+  def upvote
+    @idea = Idea.find(params[:id])
+    @idea.upvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @idea = Idea.find(params[:id])
+    @idea.downvote_by current_user
+    redirect_to :back
+  end
   private
 
   def idea_params

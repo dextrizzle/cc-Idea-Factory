@@ -19,7 +19,11 @@
 
           <div class="pull-right">
             <span>Members: <%= idea.members %></span>
-            <span>Likes: <%= idea.likes %></span>
+            <%= link_to like_idea_path(idea), method: :put do %>
+                Upvote
+                <%= idea.get_upvotes.size %>
+            <% end %>
+
           </div>
 
 
