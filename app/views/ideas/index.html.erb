@@ -13,14 +13,11 @@
           <div class="btn btn-xs btn-default">
             <%= link_to 'Show', idea_path(idea), :class => "btn-xs" %>
           </div>
-          <div class="btn btn-xs btn-default">
-            <%= link_to 'Like', :class => "btn-xs" %>
-          </div>
 
           <div class="pull-right">
             <span>Members: <%= idea.members %></span>
             <%= link_to like_idea_path(idea), method: :put do %>
-                Upvote
+                Like
                 <%= idea.get_upvotes.size %>
             <% end %>
 
